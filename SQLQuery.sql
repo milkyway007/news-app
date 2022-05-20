@@ -1,0 +1,19 @@
+CREATE DATABASE news_db;
+
+CREATE TABLE users (
+   username VARCHAR(10) PRIMARY KEY,
+   password VARCHAR(50) NOT NULL,
+   created_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+   modified_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE articles (
+   title VARCHAR(10) NOT NULL,
+   username VARCHAR(10) NOT NULL,
+   body TEXT NOT NULL,
+   created_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+   modified_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+   PRIMARY KEY (title, username),
+   FOREIGN KEY (username)
+      REFERENCES users (username) ON DELETE CASCADE
+);
